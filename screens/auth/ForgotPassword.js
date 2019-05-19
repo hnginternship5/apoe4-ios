@@ -76,7 +76,6 @@ class ForgotPassword extends Component {
           loading: false,
           disabled: false
         });
-        alert(JSON.stringify(forgot_auth));
         break;
       case 'failed':
         this.setState({

@@ -123,6 +123,7 @@ class ForgotPassword extends Component {
       });
     }
   }
+    
   //this recieves props from input component to update the parent state
   updateInput(val, name) {
     this.setState({

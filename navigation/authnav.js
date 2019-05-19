@@ -4,7 +4,7 @@ import {
   createStackNavigator
 } from "react-navigation";
 
-import SignIn from "../screens/auth/Login";
+import SignIn from "../screens/auth/LoginView";
 import SignUp from "../screens/auth/SignUp";
 import ForgotPassword from "../screens/auth/ForgotPassword";
 

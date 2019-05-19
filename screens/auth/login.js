@@ -29,10 +29,12 @@ const hh = h => {
 const ww = w => {
   return (dw * w) / 375;
 };
+
 const fields = {
   email: false,
   password: false
 };
+
 class SignIn extends Component {
   constructor(props) {
     super(props);
@@ -137,7 +139,7 @@ class SignIn extends Component {
     } catch (error) {
       this.handleModal(true, {
         header: 'Error',
-        body: error
+        body: typeof error === 'object' ? "An Error Occured, Please Try Again" : error
       });
     }
   }
@@ -161,7 +163,7 @@ class SignIn extends Component {
     } catch (error) {
       this.handleModal(true, {
         header: 'Error',
-        body: error
+        body: typeof error === 'object' ? "An Error Occured, Please Try Again" : error
       });
     }
   }

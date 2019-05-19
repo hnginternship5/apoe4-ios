@@ -1,4 +1,6 @@
-import React, { Component } from "react";
+import React, {
+  Component
+} from "react";
 import {
   StyleSheet,
   View,
@@ -13,9 +15,15 @@ import {
   AuthContainer,
   Radio
 } from "../../components/common";
-import { connect } from "react-redux";
-import { actions } from "../../state/actions";
-import { post_action } from "../../services/requests";
+import {
+  connect
+} from "react-redux";
+import {
+  actions
+} from "../../state/actions";
+import {
+  post_action
+} from "../../services/requests";
 import AsyncStorage from "@react-native-community/async-storage";
 
 const wS = Dimensions.get("window");
@@ -142,7 +150,7 @@ class SignUp extends Component {
     } catch (error) {
       this.handleModal(true, {
         header: "Error",
-        body: error
+        body: typeof error === 'object' ? "An Error Occured, Please Try Again" : error
       });
     }
   }
@@ -160,163 +168,208 @@ class SignUp extends Component {
   };
 
   renderPage() {
-    return (
-      <ScrollView
-        style={{
+    return ( <
+      ScrollView style = {
+        {
           flex: 1
-        }}
-      >
-        <Text
-          style={{
-            fontSize: ww(24),
-            fontWeight: "600",
-            color: "#676767"
-          }}
-        >
-          Sign Up
-        </Text>
-        <View
-          style={{
-            width: "100%",
-            marginVertical: hh(20)
-          }}
-        >
-          <Input
-            value={this.state.body.fullname}
-            placeholder="Full Name"
-            type="name"
-            onChangeText={text => this.updateInput(text, "fullname")}
-            name="name"
-            formValid={event => this.formValid(event)}
+        }
+      } >
+      <
+      Text style = {
+        {
+          fontSize: ww(24),
+          fontWeight: "600",
+          color: "#676767"
+        }
+      } >
+      Sign Up <
+      /Text> <
+      View style = {
+        {
+          width: "100%",
+          marginVertical: hh(20)
+        }
+      } >
+      <
+      Input value = {
+        this.state.body.fullname
+      }
+      placeholder = "Full Name"
+      type = "name"
+      onChangeText = {
+        text => this.updateInput(text, "fullname")
+      }
+      name = "name"
+      formValid = {
+        event => this.formValid(event)
+      }
+      /> <
+      Input value = {
+        this.state.body.email
+      }
+      placeholder = "Email Address"
+      type = "email"
+      name = "email"
+      formValid = {
+        event => this.formValid(event)
+      }
+      onChangeText = {
+        text => this.updateInput(text, "email")
+      }
+      /> <
+      Input value = {
+        this.state.body.password
+      }
+      placeholder = "Password"
+      type = "password"
+      onChangeText = {
+        text => this.updateInput(text, "password")
+      }
+      secureTextEntry = {
+        true
+      }
+      name = "password"
+      formValid = {
+        event => this.formValid(event)
+      }
+      /> {
+        this.state.body.password ? ( <
+          Input value = {
+            this.state.body.confirmpassword
+          }
+          placeholder = "Confirm Password"
+          type = "confirmpassword"
+          onChangeText = {
+            text => this.updateInput(text, "confirmpassword")
+          }
+          secureTextEntry = {
+            true
+          }
+          password = {
+            this.state.body.password
+          }
+          name = "confirmpassword"
+          formValid = {
+            event => this.formValid(event)
+          }
           />
-          <Input
-            value={this.state.body.email}
-            placeholder="Email Address"
-            type="email"
-            name="email"
-            formValid={event => this.formValid(event)}
-            onChangeText={text => this.updateInput(text, "email")}
-          />
-          <Input
-            value={this.state.body.password}
-            placeholder="Password"
-            type="password"
-            onChangeText={text => this.updateInput(text, "password")}
-            secureTextEntry={true}
-            name="password"
-            formValid={event => this.formValid(event)}
-          />
-          {this.state.body.password ? (
-            <Input
-              value={this.state.body.confirmpassword}
-              placeholder="Confirm Password"
-              type="confirmpassword"
-              onChangeText={text => this.updateInput(text, "confirmpassword")}
-              secureTextEntry={true}
-              password={this.state.body.password}
-              name="confirmpassword"
-              formValid={event => this.formValid(event)}
-            />
-          ) : null}
-          <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-between",
-              marginBottom: hh(10)
-            }}
-          >
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center"
-              }}
-            >
-              <TouchableOpacity
-                onPress={() =>
-                  this.setState({
-                    radio: !this.state.radio
-                  })
-                }
-              >
-                <Radio color="#3380CC" selected={this.state.radio} />
-              </TouchableOpacity>
-              <Text
-                style={{
-                  color: "#676767",
-                  fontWeight: "500",
-                  fontStyle: "normal",
-                  fontSize: ww(14)
-                }}
-              >
-                Accept Terms and Conditions
-              </Text>
-            </View>
-          </View>
-        </View>
-        <View
-          style={{
-            alignItems: "center"
-          }}
-        >
-          <CustomButton
-            onPress={() => this.signup(this.state.body)}
-            placeholder="Sign up"
-            loading={this.state.loading}
-            disabled={
-              this.state.disabled || !this.state.radio || !this.state.valid
-            }
-          />
-        </View>
-        <View
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-            width: "100%",
-            height: "100%",
-            paddingTop: "15%"
-          }}
-        >
-          <Text
-            style={{
-              fontSize: ww(16),
-              fontWeight: "500",
-              color: "#676767"
-            }}
-          >
-            Already have an account ?
-          </Text>
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate("Login")}
-          >
-            <Text
-              style={{
-                fontSize: ww(16),
-                fontWeight: "600",
-                paddingLeft: "5%",
-                color: "#3380CC"
-              }}
-            >
-              Sign In
-            </Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
+        ) : null
+      } <
+      View style = {
+        {
+          flexDirection: "row",
+          justifyContent: "space-between",
+          marginBottom: hh(10)
+        }
+      } >
+      <
+      View style = {
+        {
+          flexDirection: "row",
+          alignItems: "center"
+        }
+      } >
+      <
+      TouchableOpacity onPress = {
+        () =>
+        this.setState({
+          radio: !this.state.radio
+        })
+      } >
+      <
+      Radio color = "#3380CC"
+      selected = {
+        this.state.radio
+      }
+      /> <
+      /TouchableOpacity> <
+      Text style = {
+        {
+          color: "#676767",
+          fontWeight: "500",
+          fontStyle: "normal",
+          fontSize: ww(14)
+        }
+      } >
+      Accept Terms and Conditions <
+      /Text> <
+      /View> <
+      /View> <
+      /View> <
+      View style = {
+        {
+          alignItems: "center"
+        }
+      } >
+      <
+      CustomButton onPress = {
+        () => this.signup(this.state.body)
+      }
+      placeholder = "Sign up"
+      loading = {
+        this.state.loading
+      }
+      disabled = {
+        this.state.disabled || !this.state.radio || !this.state.valid
+      }
+      /> <
+      /View> <
+      View style = {
+        {
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          width: "100%",
+          height: "100%",
+          paddingTop: "15%"
+        }
+      } >
+      <
+      Text style = {
+        {
+          fontSize: ww(16),
+          fontWeight: "500",
+          color: "#676767"
+        }
+      } >
+      Already have an account ?
+      <
+      /Text> <
+      TouchableOpacity onPress = {
+        () => this.props.navigation.navigate("Login")
+      } >
+      <
+      Text style = {
+        {
+          fontSize: ww(16),
+          fontWeight: "600",
+          paddingLeft: "5%",
+          color: "#3380CC"
+        }
+      } >
+      Sign In <
+      /Text> <
+      /TouchableOpacity> <
+      /View> <
+      /ScrollView>
     );
   }
 
   render() {
-    return (
-      <AuthContainer
-        modal={{
+    return ( <
+      AuthContainer modal = {
+        {
           data: {
             header: this.state.modal.content.header,
             body: this.state.modal.content.body
           },
           visible: this.state.modal.state,
           handleModal: this.handleModal
-        }}
-        child={this.renderPage()}
+        }
+      }
+      child = {
+        this.renderPage()
+      }
       />
     );
   }

@@ -4,16 +4,16 @@ import {
   createStackNavigator
 } from "react-navigation";
 
-import loginScreen from "../screens/auth/Login";
-import SignUpScreen from "../screens/auth/SignUp";
+import SignIn from "../screens/auth/Login";
+import SignUp from "../screens/auth/SignUp";
 import ForgotPassword from "../screens/auth/ForgotPassword";
 
 export default createStackNavigator({
   Login: {
-    screen: loginScreen
+    screen: SignIn
   },
   Join: {
-    screen: SignUpScreen
+    screen: SignUp
   },
   Forgot: {
     screen: ForgotPassword

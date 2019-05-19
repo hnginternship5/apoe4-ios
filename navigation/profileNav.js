@@ -2,7 +2,7 @@ import React from "react";
 
 import { createStackNavigator } from "react-navigation";
 import DOB from "../components/DOB";
-import SignIn from "../components/SignIn";
+// import SignIn from "../components/SignIn";
 import SideMenu from "../components/SideMenu";
 
 export default createStackNavigator(

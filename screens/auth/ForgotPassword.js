@@ -120,7 +120,7 @@ class ForgotPassword extends Component {
     } catch (error) {
       this.handleModal(true, {
         header: 'Error',
-        body: error
+        body: typeof error === 'object' ? "An Error Occured, Please Try Again" : error
       });
     }
   }
